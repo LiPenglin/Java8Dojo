@@ -84,4 +84,19 @@ public class BehaviorParameterizationFacts {
             Assert.assertEquals(expect.get(i), actual.get(i));
         }
     }
+
+    @Test
+    public void should_filtering_using_lambda_expression() {
+        ArrayList<Apple> expect= new ArrayList<Apple>() {
+            {
+                add(new Apple("yellow", 160));
+            }
+        };
+        ArrayList<Apple> actual = behaviorParameterization
+                .filterColorAndWeight(BehaviorParameterizationFacts.apples,
+                        (Apple apple) -> "yellow".equals(apple.getColor()) && apple.getWeight() > 150);
+        for (int i = 0; i < actual.size(); i++) {
+            Assert.assertEquals(expect.get(i), actual.get(i));
+        }
+    }
 }
