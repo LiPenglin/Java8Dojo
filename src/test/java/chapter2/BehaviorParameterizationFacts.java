@@ -1,6 +1,8 @@
 package chapter2;
 
 import chapter2.modle.Apple;
+import chapter2.modle.YellowAndHeavyApplePredicate;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,9 +19,9 @@ public class BehaviorParameterizationFacts {
     public static void init() {
         apples = new ArrayList<Apple>() {
             {
-                add(new Apple("green"));
-                add(new Apple("red"));
-                add(new Apple("yellow"));
+                add(new Apple("green", 130));
+                add(new Apple("red", 150));
+                add(new Apple("yellow", 160));
             }
         };
         behaviorParameterization = new BehaviorParameterization();
@@ -28,13 +30,13 @@ public class BehaviorParameterizationFacts {
     public void should_filtering_green_color_apple_by_first_attempt() {
         ArrayList<Apple> expected = new ArrayList<Apple>() {
             {
-                add(new Apple("green"));
+                add(new Apple("green", 150));
             }
         };
         ArrayList<Apple> actual = behaviorParameterization
                 .filterGreenApples(apples);
         for (int i = 0; i < actual.size(); i++) {
-            assertThat(expected.get(i), is(actual.get(i)));
+            assertThat(expected.get(i).getColor(), is(actual.get(i).getColor()));
         }
     }
     @Test
@@ -44,6 +46,20 @@ public class BehaviorParameterizationFacts {
                 .filterAnyColorApples(this.apples, expectColor);
         for (int i = 0; i < actual.size(); i++) {
             assertThat(expectColor, is(actual.get(i).getColor()));
+        }
+    }
+
+    @Test
+    public void should_filtering_color_and_weight() {
+        ArrayList<Apple> expect= new ArrayList<Apple>() {
+            {
+                add(new Apple("yellow", 160));
+            }
+        };
+        YellowAndHeavyApplePredicate yellowAndHeavyApplePredicate = new YellowAndHeavyApplePredicate();
+        ArrayList<Apple> actual = behaviorParameterization.filterColorAndWeight(BehaviorParameterizationFacts.apples, yellowAndHeavyApplePredicate);
+        for (int i = 0; i < actual.size(); i++) {
+            Assert.assertEquals(expect.get(i), actual.get(i));
         }
     }
 }
