@@ -2,8 +2,10 @@ package chapter2;
 
 import chapter2.modle.Apple;
 import chapter2.modle.ApplePredicate;
+import chapter2.modle.Predicate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BehaviorParameterization {
     public ArrayList<Apple> filterGreenApples(ArrayList<Apple> apples) {
@@ -35,4 +37,16 @@ public class BehaviorParameterization {
         }
         return result;
     }
+
+    public static <T> List<T> filter(List<T> list, Predicate<T> p) {
+        List<T> result = new ArrayList<>();
+        for (T t: list) {
+            if (p.selectByCriteria(t)) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+
 }

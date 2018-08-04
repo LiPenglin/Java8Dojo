@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -44,7 +45,7 @@ public class BehaviorParameterizationFacts {
     public void should_filtering_any_color_apple() {
         String expectColor = "red";
         ArrayList<Apple> actual = behaviorParameterization
-                .filterAnyColorApples(this.apples, expectColor);
+                .filterAnyColorApples(apples, expectColor);
         for (int i = 0; i < actual.size(); i++) {
             assertThat(expectColor, is(actual.get(i).getColor()));
         }
@@ -59,7 +60,7 @@ public class BehaviorParameterizationFacts {
         };
         YellowAndHeavyApplePredicate yellowAndHeavyApplePredicate = new YellowAndHeavyApplePredicate();
         ArrayList<Apple> actual = behaviorParameterization
-                .filterColorAndWeight(BehaviorParameterizationFacts.apples, yellowAndHeavyApplePredicate);
+                .filterColorAndWeight(apples, yellowAndHeavyApplePredicate);
         for (int i = 0; i < actual.size(); i++) {
             Assert.assertEquals(expect.get(i), actual.get(i));
         }
@@ -73,7 +74,7 @@ public class BehaviorParameterizationFacts {
             }
         };
         ArrayList<Apple> actual = behaviorParameterization
-                .filterColorAndWeight(BehaviorParameterizationFacts.apples, new ApplePredicate() {
+                .filterColorAndWeight(apples, new ApplePredicate() {
                     @Override
                     public boolean selectApplesByCriteria(Apple apple) {
                         return "yellow".equals(apple.getColor())
@@ -93,8 +94,23 @@ public class BehaviorParameterizationFacts {
             }
         };
         ArrayList<Apple> actual = behaviorParameterization
-                .filterColorAndWeight(BehaviorParameterizationFacts.apples,
+                .filterColorAndWeight(apples,
                         (Apple apple) -> "yellow".equals(apple.getColor()) && apple.getWeight() > 150);
+        for (int i = 0; i < actual.size(); i++) {
+            Assert.assertEquals(expect.get(i), actual.get(i));
+        }
+    }
+
+    @Test
+    public void should_filtering_abstracting_over_list_type() {
+        ArrayList<Apple> expect= new ArrayList<Apple>() {
+            {
+                add(new Apple("red", 150));
+            }
+        };
+        List<Apple> actual = behaviorParameterization
+                .filter(apples,
+                        (Apple apple) -> "red".equals(apple.getColor()) && apple.getWeight() < 150);
         for (int i = 0; i < actual.size(); i++) {
             Assert.assertEquals(expect.get(i), actual.get(i));
         }
