@@ -1,7 +1,7 @@
 package chapter2;
 
 import chapter2.modle.Apple;
-import chapter2.modle.YellowAndHeavyApplePredicate;
+import chapter2.modle.ApplePredicate;
 
 import java.util.ArrayList;
 
@@ -26,7 +26,7 @@ public class BehaviorParameterization {
         return result;
     }
 
-    public ArrayList<Apple> filterColorAndWeight(ArrayList<Apple> apples, YellowAndHeavyApplePredicate predicate) {
+    public ArrayList<Apple> filterColorAndWeight(ArrayList<Apple> apples, ApplePredicate predicate) {
         ArrayList<Apple> result = new ArrayList<>();
         for (Apple apple: apples) {
             if (predicate.selectApplesByCriteria(apple)) {
