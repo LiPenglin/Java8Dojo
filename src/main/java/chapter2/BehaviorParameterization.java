@@ -14,4 +14,14 @@ public class BehaviorParameterization {
         }
         return result;
     }
+
+    public ArrayList<Apple> filterAnyColorApples(ArrayList<Apple> apples, String color) {
+        ArrayList<Apple> result = new ArrayList<>();
+        for (Apple apple: apples) {
+            if (color.equals(apple.getColor())) {
+                result.add(apple);
+            }
+        }
+        return result;
+    }
 }
