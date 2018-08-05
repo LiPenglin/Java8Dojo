@@ -108,6 +108,7 @@ public class BehaviorParameterizationFacts {
                 add(new Apple("red", 150));
             }
         };
+        // pass lambdas.
         List<Apple> actual = behaviorParameterization
                 .filter(apples,
                         (Apple apple) -> "red".equals(apple.getColor()) && apple.getWeight() < 150);

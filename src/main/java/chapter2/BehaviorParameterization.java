@@ -38,6 +38,7 @@ public class BehaviorParameterization {
         return result;
     }
 
+    // execute a behavior in task function.
     public static <T> List<T> filter(List<T> list, Predicate<T> p) {
         List<T> result = new ArrayList<>();
         for (T t: list) {
