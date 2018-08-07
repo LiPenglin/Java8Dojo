@@ -34,8 +34,16 @@ public class FunctionalInterfacesFacts {
     @Test
     public void should_create_apple_list_when_map() {
         List<Integer> weights = Arrays.asList(1, 3, 5, 7, 9);
+        /*
+        main kinds of method reference.
+        1. static method.
+        2. instance method of an arbitrary type.
+        3. instance method of an existing object.
+        4. constructor reference.
+         */
         List<Pear> actual = FunctionalInterfacesInstance.map(
                 weights,
+//                (Integer weight) -> new Pear(weight)
                 Pear::new
         );
         for (int i = 0; i < weights.size(); i++) {
