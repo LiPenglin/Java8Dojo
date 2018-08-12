@@ -99,6 +99,40 @@ public class UsingStreamsFacts {
                 )
                 .collect(Collectors.toList());
         Assert.assertArrayEquals(expectedPairs.toArray(), actualPairs.toArray());
+    }
 
+    // finding and matching.
+    /*
+        matching.
+        allMatch()
+        anyMatch()
+        noneMatch()
+     */
+    @Test
+    public void given_a_sequence_of_from_1_to_3_should_return_false_when_judge_if_has_zero() {
+        boolean hasZero = IntStream.rangeClosed(1, 3)
+                .anyMatch(i -> i == 0);
+        Assert.assertFalse(hasZero);
+    }
+
+    /*
+        finding.
+        findFirst()
+        findAny()
+     */
+    @Test
+    public void should_return_true_when_judge_if_has_greater_than_zero() {
+        /*
+            Optional:
+            isPresent()
+            ifPresent(consumer<T> block)
+            get()
+            orElse(T other)
+         */
+        boolean hasGreaterNumbers = IntStream.range(1, 3)
+                .filter(i -> i > 0)
+                .findAny()
+                .isPresent();
+        Assert.assertTrue(hasGreaterNumbers);
     }
 }
