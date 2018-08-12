@@ -135,4 +135,29 @@ public class UsingStreamsFacts {
                 .isPresent();
         Assert.assertTrue(hasGreaterNumbers);
     }
+
+    // reducing.
+    /*
+        reduce to sum.
+     */
+    @Test
+    public void given_a_sequence_should_get_sum() {
+        int expectedSum = 3;
+        int sum = 0;
+        int actualSum = IntStream.of(1, 1, 1)
+                .reduce(sum, Integer::sum);
+        Assert.assertEquals(expectedSum, actualSum);
+    }
+
+    /*
+        maximum or minimum
+     */
+    @Test
+    public void given_a_sequence_should_get_max() {
+        int expectedMax = 8;
+        int actualMax = IntStream.range(1, 9)
+                .reduce(Integer::max)
+                .getAsInt();
+        Assert.assertEquals(expectedMax, actualMax);
+    }
 }
