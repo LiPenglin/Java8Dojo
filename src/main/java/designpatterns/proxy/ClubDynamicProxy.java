@@ -1,4 +1,4 @@
-package designpatterns.proxypattern;
+package designpatterns.proxy;
 
 public class ClubDynamicProxy extends DynamicProxy<Club> {
 	public static <T> T newProxyInstance(Club club) {

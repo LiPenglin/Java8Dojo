@@ -1,4 +1,4 @@
-package designpatterns.proxypattern;
+package designpatterns.proxy;
 
 import org.junit.Test;
 

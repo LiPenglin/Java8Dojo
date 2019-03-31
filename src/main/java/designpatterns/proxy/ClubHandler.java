@@ -1,4 +1,4 @@
-package designpatterns.proxypattern;
+package designpatterns.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

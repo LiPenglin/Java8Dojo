@@ -1,4 +1,4 @@
-package designpatterns.proxypattern;
+package designpatterns.proxy;
 
 public class ClassicalClub implements Club{
 	@Override
